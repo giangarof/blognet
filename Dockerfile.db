@@ -1,0 +1,20 @@
+# Use the official PostgreSQL image as the base image
+FROM postgres:latest
+
+COPY backend/scripts/init.sql /docker-entrypoint-initdb.d/
+
+# Set environment variables for the database
+# These variables will create a database and a user with the specified password.
+ENV POSTGRES_DB="blognet"
+ENV POSTGRES_USER="postgres"
+ENV POSTGRES_PASSWORD=1234
+
+# Expose the default PostgreSQL port
+EXPOSE 5432
+
+
+# build the image
+# docker build -t my-postgres -f Dockerfile.db .
+
+# run the container
+# docker run -d --name my-postgres -p 5433:5432 my-postgres
